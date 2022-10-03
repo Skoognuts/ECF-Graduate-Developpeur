@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -27,6 +29,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\OneToMany(mappedBy: 'userId', targetEntity: UserGrants::class)]
+    private Collection $userGrants;
+
+    public function __construct()
+    {
+        $this->userGrants = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -96,5 +106,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, UserGrants>
+     */
+    public function getUserGrants(): Collection
+    {
+        return $this->userGrants;
+    }
+
+    public function addUserGrant(UserGrants $userGrant): self
+    {
+        if (!$this->userGrants->contains($userGrant)) {
+            $this->userGrants->add($userGrant);
+            $userGrant->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserGrant(UserGrants $userGrant): self
+    {
+        if ($this->userGrants->removeElement($userGrant)) {
+            // set the owning side to null (unless already changed)
+            if ($userGrant->getUserId() === $this) {
+                $userGrant->setUserId(null);
+            }
+        }
+
+        return $this;
     }
 }
