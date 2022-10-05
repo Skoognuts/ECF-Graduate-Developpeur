@@ -1,0 +1,16 @@
+<table class="table table-sm table-hover">
+    <thead>
+        <tr class="table-head">
+            <th style="width: 75%">Ville</th>
+            <th class="text-end" style="width: 25%">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for partner in partners %}
+            <tr>
+                <td><b>{{ partner.city }}</b></td>
+                <td class="text-end"><a href="{{ path('app_admin_show_partner', {'id': partner.id}) }}" class="btn btn-sm btn-success">Voir</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

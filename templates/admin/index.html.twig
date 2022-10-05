@@ -16,11 +16,13 @@
         <section class="partner-list ms-2 me-2 mb-5">
             <div class="admin-filter-bar d-flex flex-row justify-content-between align-items-center">
                 <h2 class="mb-0">Liste des Partenaires :</h2>
-                <select class="me-2" id="partnerActivSelection">
-                    <option value="all">Afficher tout</option>
-                    <option value="all">Actifs</option>
-                    <option value="all">Innactifs</option>
-                </select>
+                <div class="d-flex flex-row justify-content-end me-2">
+                    <a class="{% if activPartnerLinks[0] == true %}white-link-activ{% else %}white-link{% endif %}" href="{{ path('app_admin') }}">Tous</a>
+                    <p class="m-0">&ensp;|&ensp;</p>
+                    <a class="{% if activPartnerLinks[1] == true %}white-link-activ{% else %}white-link{% endif %}" href="{{ path('app_admin_activ_partners') }}">Actifs</a>
+                    <p class="m-0">&ensp;|&ensp;</p>
+                    <a class="{% if activPartnerLinks[2] == true %}white-link-activ{% else %}white-link{% endif %}" href="{{ path('app_admin_innactiv_partners') }}">Innactifs</a>
+                </div>
             </div>
             <div class="alert alert-warning p-1">
                 <div class="d-flex flex-row justify-content-between align-items-center">
@@ -29,32 +31,21 @@
                 </div>
                 <div id="partnerSearch"></div>
             </div>
-            <table class="table table-sm table-hover">
-                <thead>
-                    <tr class="table-head">
-                        <th style="width: 75%">Ville</th>
-                        <th class="text-end" style="width: 25%">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for partner in partners %}
-                        <tr>
-                            <td><b>{{ partner.city }}</b></td>
-                            <td class="text-end"><a href="{{ path('app_admin_show_partner', {'id': partner.id}) }}" class="btn btn-sm btn-success">Voir</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            
+            {{ include('parts/_partner_table.html.twig') }}
+
         </section>
 
         <section class="structure-list ms-2 me-2 mb-5">
             <div class="admin-filter-bar d-flex flex-row justify-content-between align-items-center">
                 <h2 class="mb-0">Liste des Structures :</h2>
-                <select class="me-2" id="structureActivSelection">
-                    <option value="all">Afficher tout</option>
-                    <option value="all">Actifs</option>
-                    <option value="all">Innactifs</option>
-                </select>
+                <div class="d-flex flex-row justify-content-end me-2">
+                    <a class="{% if activStructureLinks[0] == true %}white-link-activ{% else %}white-link{% endif %}" href="{{ path('app_admin') }}">Tous</a>
+                    <p class="m-0">&ensp;|&ensp;</p>
+                    <a class="{% if activStructureLinks[1] == true %}white-link-activ{% else %}white-link{% endif %}" href="{{ path('app_admin_activ_structures') }}">Actifs</a>
+                    <p class="m-0">&ensp;|&ensp;</p>
+                    <a class="{% if activStructureLinks[2] == true %}white-link-activ{% else %}white-link{% endif %}" href="{{ path('app_admin_innactiv_structures') }}">Innactifs</a>
+                </div>
             </div>
             <div class="alert alert-warning p-1">
                 <div class="d-flex flex-row justify-content-between align-items-center">
@@ -63,27 +54,12 @@
                 </div>
                 <div id="structureSearch"></div>
             </div>
-            <table class="table table-sm table-hover">
-                <thead>
-                    <tr class="table-head">
-                        <th style="width: 35%">Ville</th>
-                        <th style="width: 50%">Adresse</th>
-                        <th class="text-end" style="width: 15%">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for structure in structures %}
-                        <tr>
-                            <td><b>{{ structure.partnerId.city }}</b></td>
-                            <td>{{ structure.address }}</td>
-                            <td class="text-end"><a href="{{ path('app_admin_show_structure', {'id': structure.id}) }}" class="btn btn-sm btn-success">Voir</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            
+            {{ include('parts/_structure_table.html.twig') }}
+
         </section>
 
-        <script src="#"></script>
+        <script src="{{ asset('scripts/search.js') }}"></script>
     </main>
 
     {{ include('parts/_footer.html.twig') }}
