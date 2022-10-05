@@ -1,9 +1,12 @@
 @import url("https://fonts.cdnfonts.com/css/bahnschrift");
 html,
 body {
-  height: 100% !important;
   font-family: "Bahnschrift", sans-serif;
   color: #23272a;
+}
+
+main {
+  min-height: 100% !important;
 }
 
 nav {
@@ -29,6 +32,11 @@ a:hover {
 
 a:active {
   color: #75a233;
+}
+
+.admin-filter-bar {
+  background: #89c541;
+  border-radius: 5px;
 }
 
 .brand-wrapper {
@@ -81,7 +89,7 @@ header {
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   width: 100%;
   bottom: 0;
 }

@@ -6,57 +6,59 @@
 
     {{ include('parts/_header.html.twig') }}
 
-    <nav aria-label="breadcrumb breadcrumb-shadow">
-        <ol class="breadcrumb ms-2">
-            <li class="breadcrumb-item"><a href="{{ path('app_partner') }}">Partenaire</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ structure.address }}</li>
-        </ol>
-    </nav>
+    <main>
+        <nav aria-label="breadcrumb breadcrumb-shadow">
+            <ol class="breadcrumb ms-2">
+                <li class="breadcrumb-item"><a href="{{ path('app_partner') }}">Partenaire</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ structure.address }}</li>
+            </ol>
+        </nav>
 
-    <div class="alert alert-success ms-2 me-2 p-2">
-        <p class="m-0">Succursale : {{ structure.address }} - 
-            {% if structure.isActive == true %}
-                Actif
-            {% else %}
-                Innactif
-            {% endif %}
-        </p>
-    </div>
-
-    <section class="structure-list ms-2 me-2 mb-5">
-        <h2 class="mb-0">Liste des Permissions :</h2>
-        <div class="alert alert-warning mt-2 p-2">
-            <p class="m-0">Les permissions de cette succursale sont en lecture seule. Pour modifier vos permissions, veuillez <a href="mailto:salesforce@sporty.fr">nous contacter</a> pour modifier votre contrat.</p>
+        <div class="alert alert-success ms-2 me-2 p-2">
+            <p class="m-0">Succursale : {{ structure.address }} - 
+                {% if structure.isActive == true %}
+                    Actif
+                {% else %}
+                    Innactif
+                {% endif %}
+            </p>
         </div>
-        <table class="table table-sm table-hover">
-            <thead>
-                <tr class="table-head">
-                    <th style="width: 85%">Intitulé</th>
-                    <th class="text-end" style="width: 15%">Etat</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for permission in localPermissions %}
-                    <tr>
-                        <td><b>{{ permission.grantId.name }}</b></td>
-                        <td>
-                            <div class="form-check form-switch d-flex flex-row justify-content-end">
-                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDisabled" disabled
-                                    {% if permission.isActive == true %}
-                                        checked
-                                    {% endif %}
-                                >
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
 
-    <div class="text-center">
-        <a href="{{ path('app_partner') }}" class="btn btn-success btn-lg">Retour</a>
-    </div>
+        <section class="structure-list ms-2 me-2 mb-5">
+            <h2 class="mb-0">Liste des Permissions :</h2>
+            <div class="alert alert-warning mt-2 p-2">
+                <p class="m-0">Les permissions de cette succursale sont en lecture seule. Pour modifier vos permissions, veuillez <a href="mailto:salesforce@sporty.fr">nous contacter</a> pour modifier votre contrat.</p>
+            </div>
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr class="table-head">
+                        <th style="width: 85%">Intitulé</th>
+                        <th class="text-end" style="width: 15%">Etat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for permission in localPermissions %}
+                        <tr>
+                            <td><b>{{ permission.grantId.name }}</b></td>
+                            <td>
+                                <div class="form-check form-switch d-flex flex-row justify-content-end">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDisabled" disabled
+                                        {% if permission.isActive == true %}
+                                            checked
+                                        {% endif %}
+                                    >
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <div class="text-center">
+            <a href="{{ path('app_partner') }}" class="btn btn-success btn-lg">Retour</a>
+        </div>
+    </main>
 
     {{ include('parts/_footer.html.twig') }}
 

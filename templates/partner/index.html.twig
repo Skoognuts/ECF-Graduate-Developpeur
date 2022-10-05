@@ -6,72 +6,74 @@
 
     {{ include('parts/_header.html.twig') }}
 
-    <nav aria-label="breadcrumb breadcrumb-shadow">
-        <ol class="breadcrumb ms-2">
-            <li class="breadcrumb-item active" aria-current="page">Partenaire</li>
-        </ol>
-    </nav>
+    <main>
+        <nav aria-label="breadcrumb breadcrumb-shadow">
+            <ol class="breadcrumb ms-2">
+                <li class="breadcrumb-item active" aria-current="page">Partenaire</li>
+            </ol>
+        </nav>
 
-    <div class="alert alert-success ms-2 me-2 p-2">
-        <p class="m-0">Partenaire de {{ partner.city }} -
-            {% if partner.isActive == true %}
-                Actif
-            {% else %}
-                Innactif
-            {% endif %}
-        </p>
-    </div>
-
-    <section class="structure-list ms-2 me-2 mb-5">
-        <h2 class="mb-0">Liste des Structures :</h2>
-        <table class="table table-sm table-hover">
-            <thead>
-                <tr class="table-head">
-                    <th style="width: 85%">Adresse</th>
-                    <th class="text-end" style="width: 15%">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for structure in structures %}
-                    <tr>
-                        <td><b>{{ structure.address }}</b></td>
-                        <td class="text-end"><a href="{{ path('app_partner_show_structure', {'id' : partner.id }) }}" class="btn btn-sm btn-success">Voir</a></td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
-
-    <section class="structure-list ms-2 me-2 mb-5">
-        <h2 class="mb-0">Liste des Permissions Globales :</h2>
-        <div class="alert alert-warning mt-2 p-2">
-            <p class="m-0">Vos permissions globales ainsi que les permissions de chacunes de vos succursales sont en lecture seule. Pour modifier vos permissions, veuillez <a href="mailto:salesforce@sporty.fr">nous contacter</a> pour modifier votre contrat.</p>
+        <div class="alert alert-success ms-2 me-2 p-2">
+            <p class="m-0">Partenaire de {{ partner.city }} -
+                {% if partner.isActive == true %}
+                    Actif
+                {% else %}
+                    Innactif
+                {% endif %}
+            </p>
         </div>
-        <table class="table table-sm table-hover">
-            <thead>
-                <tr class="table-head">
-                    <th style="width: 85%">Intitulé</th>
-                    <th class="text-end" style="width: 15%">Etat</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for permission in globalPermissions %}
-                    <tr>
-                        <td><b>{{ permission.grantId.name }}</b></td>
-                        <td>
-                            <div class="form-check form-switch d-flex flex-row justify-content-end">
-                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDisabled" disabled
-                                    {% if permission.isActive == true %}
-                                        checked
-                                    {% endif %}
-                                >
-                            </div>
-                        </td>
+
+        <section class="structure-list ms-2 me-2 mb-5">
+            <h2 class="mb-0">Liste des Structures :</h2>
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr class="table-head">
+                        <th style="width: 85%">Adresse</th>
+                        <th class="text-end" style="width: 15%">Action</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
+                </thead>
+                <tbody>
+                    {% for structure in structures %}
+                        <tr>
+                            <td><b>{{ structure.address }}</b></td>
+                            <td class="text-end"><a href="{{ path('app_partner_show_structure', {'id' : partner.id }) }}" class="btn btn-sm btn-success">Voir</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="structure-list ms-2 me-2 mb-5">
+            <h2 class="mb-0">Liste des Permissions Globales :</h2>
+            <div class="alert alert-warning mt-2 p-2">
+                <p class="m-0">Vos permissions globales ainsi que les permissions de chacunes de vos succursales sont en lecture seule. Pour modifier vos permissions, veuillez <a href="mailto:salesforce@sporty.fr">nous contacter</a> pour modifier votre contrat.</p>
+            </div>
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr class="table-head">
+                        <th style="width: 85%">Intitulé</th>
+                        <th class="text-end" style="width: 15%">Etat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for permission in globalPermissions %}
+                        <tr>
+                            <td><b>{{ permission.grantId.name }}</b></td>
+                            <td>
+                                <div class="form-check form-switch d-flex flex-row justify-content-end">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDisabled" disabled
+                                        {% if permission.isActive == true %}
+                                            checked
+                                        {% endif %}
+                                    >
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
 
     {{ include('parts/_footer.html.twig') }}
 
