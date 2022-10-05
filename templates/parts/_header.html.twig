@@ -1,0 +1,31 @@
+<header>
+  <div class="header-content">
+    <div class="d-flex flex-row align-items-center m-0">
+      <img class="header-logo me-2" src="{{ asset('images/logo.png') }}" alt="Logo">
+      <h1 class="mb-0 header-title">SPORTY</h1>
+    </div>
+    <div class="d-flex">
+      {% if is_granted('ROLE_ADMIN') %}
+        <div class="d-flex flex-row header-user align-items-center">
+          <p class="mb-0 me-2">{{ admin.firstName }} {{ admin.lastName }}</p>
+          <a href="{{ path('app_logout') }}"><img src="{{ asset('images/logout_30.png') }}" alt="Logout"></a>
+        </div>
+      {% endif %}
+      {% if is_granted('ROLE_PARTNER') %}
+        <div class="d-flex flex-row header-user align-items-center">
+          <p class="mb-0 me-2">{{ partner.city }}</p>
+          <a href="{{ path('app_logout') }}"><img src="{{ asset('images/logout_30.png') }}" alt="Logout"></a>
+        </div>
+      {% endif %}
+      {% if is_granted('ROLE_STRUCTURE') %}
+        <div class="d-flex flex-row header-user align-items-center">
+          <div class="d-flex flex-column align-items-end me-2">
+            <p class="mb-0">{{ partner.city }}</p>
+            <p class="mb-0">{{ structure.address }}</p>
+          </div>
+          <a href="{{ path('app_logout') }}"><img src="{{ asset('images/logout_30.png') }}" alt="Logout"></a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</header>

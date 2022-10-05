@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Structure :: SPORTY{% endblock %}
+{% block title %}Administration :: SPORTY{% endblock %}
 
 {% block body %}
 
@@ -8,14 +8,14 @@
 
     <nav aria-label="breadcrumb breadcrumb-shadow">
         <ol class="breadcrumb ms-2">
-            <li class="breadcrumb-item active" aria-current="page">Succursale</li>
+            <li class="breadcrumb-item"><a href="{{ path('app_admin') }}">Administration</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ partner.city }}</li>
         </ol>
     </nav>
 
     <div class="alert alert-success ms-2 me-2 p-2">
-        <p class="m-0">Partenaire de {{ partner.city }}</p>
-        <p class="m-0">Succursale : {{ structure.address }} - 
-            {% if structure.isActive == true %}
+        <p class="m-0">Partenaire de {{ partner.city }} -
+            {% if partner.isActive == true %}
                 Actif
             {% else %}
                 Innactif
@@ -24,10 +24,27 @@
     </div>
 
     <section class="structure-list ms-2 me-2 mb-5">
-        <h2 class="mb-0">Liste des Permissions :</h2>
-        <div class="alert alert-warning mt-2 p-2">
-            <p class="m-0">Les permissions de votre succursale sont en lecture seule. Pour modifier vos permissions, veuillez contacter votre franchisé ou <a href="mailto:salesforce@sporty.fr">nous contacter</a> pour modifier votre contrat.</p>
-        </div>
+        <h2 class="mb-0">Liste des Structures :</h2>
+        <table class="table table-sm table-hover">
+            <thead>
+                <tr class="table-head">
+                    <th style="width: 85%">Adresse</th>
+                    <th class="text-end" style="width: 15%">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for structure in structures %}
+                    <tr>
+                        <td><b>{{ structure.address }}</b></td>
+                        <td class="text-end"><a href="#" class="btn btn-sm btn-success">Voir</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="structure-list ms-2 me-2 mb-5">
+        <h2 class="mb-0">Liste des Permissions Globales :</h2>
         <table class="table table-sm table-hover">
             <thead>
                 <tr class="table-head">
@@ -36,7 +53,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for permission in localPermissions %}
+                {% for permission in globalPermissions %}
                     <tr>
                         <td><b>{{ permission.grantId.name }}</b></td>
                         <td>
@@ -53,6 +70,10 @@
             </tbody>
         </table>
     </section>
+
+    <div class="text-center">
+      <a href="{{ path('app_admin') }}" class="btn btn-success btn-lg">Retour</a>
+    </div>
 
     {{ include('parts/_footer.html.twig') }}
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Structure :: SPORTY{% endblock %}
+{% block title %}Administration :: SPORTY{% endblock %}
 
 {% block body %}
 
@@ -8,7 +8,9 @@
 
     <nav aria-label="breadcrumb breadcrumb-shadow">
         <ol class="breadcrumb ms-2">
-            <li class="breadcrumb-item active" aria-current="page">Succursale</li>
+            <li class="breadcrumb-item"><a href="{{ path('app_admin') }}">Administration</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_admin_show_partner', {'id': partner.id}) }}">{{ partner.city }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ structure.address }}</li>
         </ol>
     </nav>
 
@@ -25,9 +27,6 @@
 
     <section class="structure-list ms-2 me-2 mb-5">
         <h2 class="mb-0">Liste des Permissions :</h2>
-        <div class="alert alert-warning mt-2 p-2">
-            <p class="m-0">Les permissions de votre succursale sont en lecture seule. Pour modifier vos permissions, veuillez contacter votre franchisé ou <a href="mailto:salesforce@sporty.fr">nous contacter</a> pour modifier votre contrat.</p>
-        </div>
         <table class="table table-sm table-hover">
             <thead>
                 <tr class="table-head">
@@ -53,6 +52,10 @@
             </tbody>
         </table>
     </section>
+
+    <div class="text-center">
+      <a href="{{ path('app_admin') }}" class="btn btn-success btn-lg">Retour</a>
+    </div>
 
     {{ include('parts/_footer.html.twig') }}
 
