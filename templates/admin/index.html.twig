@@ -6,53 +6,85 @@
 
     {{ include('parts/_header.html.twig') }}
 
-    <nav aria-label="breadcrumb breadcrumb-shadow">
-        <ol class="breadcrumb ms-2">
-            <li class="breadcrumb-item active" aria-current="page">Administration</li>
-        </ol>
-    </nav>
+    <main>
+        <nav aria-label="breadcrumb breadcrumb-shadow">
+            <ol class="breadcrumb ms-2">
+                <li class="breadcrumb-item active" aria-current="page">Administration</li>
+            </ol>
+        </nav>
 
-    <section class="partner-list ms-2 me-2 mb-5">
-        <h2 class="mb-0">Liste des Partenaires :</h2>
-        <table class="table table-sm table-hover">
-            <thead>
-                <tr class="table-head">
-                    <th style="width: 75%">Ville</th>
-                    <th class="text-end" style="width: 25%">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for partner in partners %}
-                    <tr>
-                        <td><b>{{ partner.city }}</b></td>
-                        <td class="text-end"><a href="{{ path('app_admin_show_partner', {'id': partner.id}) }}" class="btn btn-sm btn-success">Voir</a></td>
+        <section class="partner-list ms-2 me-2 mb-5">
+            <div class="admin-filter-bar d-flex flex-row justify-content-between align-items-center">
+                <h2 class="mb-0">Liste des Partenaires :</h2>
+                <select class="me-2" id="partnerActivSelection">
+                    <option value="all">Afficher tout</option>
+                    <option value="all">Actifs</option>
+                    <option value="all">Innactifs</option>
+                </select>
+            </div>
+            <div class="alert alert-warning p-1">
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <label for="searchForPartner">Chercher un partenaire</label>
+                    <input type="text" onkeyup="showPartnerResult(this.value)">
+                </div>
+                <div id="partnerSearch"></div>
+            </div>
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr class="table-head">
+                        <th style="width: 75%">Ville</th>
+                        <th class="text-end" style="width: 25%">Action</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
+                </thead>
+                <tbody>
+                    {% for partner in partners %}
+                        <tr>
+                            <td><b>{{ partner.city }}</b></td>
+                            <td class="text-end"><a href="{{ path('app_admin_show_partner', {'id': partner.id}) }}" class="btn btn-sm btn-success">Voir</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
 
-    <section class="structure-list ms-2 me-2 mb-5">
-        <h2 class="mb-0">Liste des Structures :</h2>
-        <table class="table table-sm table-hover">
-            <thead>
-                <tr class="table-head">
-                    <th style="width: 35%">Ville</th>
-                    <th style="width: 50%">Adresse</th>
-                    <th class="text-end" style="width: 15%">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for structure in structures %}
-                    <tr>
-                        <td><b>{{ structure.partnerId.city }}</b></td>
-                        <td>{{ structure.address }}</td>
-                        <td class="text-end"><a href="{{ path('app_admin_show_structure', {'id': structure.id}) }}" class="btn btn-sm btn-success">Voir</a></td>
+        <section class="structure-list ms-2 me-2 mb-5">
+            <div class="admin-filter-bar d-flex flex-row justify-content-between align-items-center">
+                <h2 class="mb-0">Liste des Structures :</h2>
+                <select class="me-2" id="structureActivSelection">
+                    <option value="all">Afficher tout</option>
+                    <option value="all">Actifs</option>
+                    <option value="all">Innactifs</option>
+                </select>
+            </div>
+            <div class="alert alert-warning p-1">
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <label for="searchForStructure">Chercher une structure</label>
+                    <input type="text" onkeyup="showStructureResult(this.value)">
+                </div>
+                <div id="structureSearch"></div>
+            </div>
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr class="table-head">
+                        <th style="width: 35%">Ville</th>
+                        <th style="width: 50%">Adresse</th>
+                        <th class="text-end" style="width: 15%">Action</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
+                </thead>
+                <tbody>
+                    {% for structure in structures %}
+                        <tr>
+                            <td><b>{{ structure.partnerId.city }}</b></td>
+                            <td>{{ structure.address }}</td>
+                            <td class="text-end"><a href="{{ path('app_admin_show_structure', {'id': structure.id}) }}" class="btn btn-sm btn-success">Voir</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <script src="#"></script>
+    </main>
 
     {{ include('parts/_footer.html.twig') }}
 

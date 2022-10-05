@@ -6,13 +6,14 @@ use App\Repository\AdministratorRepository;
 use App\Repository\PartnerRepository;
 use App\Repository\StructureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
     #[Route('/admin', name: 'app_admin')]
-    public function index(AdministratorRepository $administratorRepository, PartnerRepository $partnerRepository, StructureRepository $structureRepository): Response
+    public function index(AdministratorRepository $administratorRepository, PartnerRepository $partnerRepository, StructureRepository $structureRepository, Request $request): Response
     {
         $currentUser = $this->getUser();
         $admin = $administratorRepository->findOneBy(array('userId' => $currentUser->getId()));
