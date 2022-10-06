@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration :: SPORTY{% endblock %}
+
+{% block body %}
+
+  {{ include('parts/_header.html.twig') }}
+
+  <main>
+    <nav aria-label="breadcrumb breadcrumb-shadow">
+      <ol class="breadcrumb ms-2">
+        <li class="breadcrumb-item"><a href="{{ path('app_admin') }}">Administration</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Modifier {{ partner.city }}</li>
+      </ol>
+    </nav>
+
+    <h2 class="ms-3 me-3 mb-3">Modifier le Partenaire {{ partner.city }}</h2>
+
+    <div class="alert alert-success ms-3 me-3 p-2 mb-2">
+      Rendre le partenaire innactif rendra toutes ses structures innactives.
+    </div>
+
+    {{ form_start(editPartnerForm) }}
+
+    <div class="form-check form-switch ms-3 me-3 mb-3">
+      {{ form_widget(editPartnerForm.isActive) }}
+      {{ form_label(editPartnerForm.isActive, 'Partenaire actif') }}
+    </div>
+
+    <div class="alert alert-success ms-3 me-3 p-2">
+      Les modifications des permissions globales n'entrainent pas de modifications des permissions pour les structures affiliées à ce partenaire. Cependant, les prochaines structures créées pour ce partenaire bénéficieront de ces modifications.
+    </div>
+
+    <section class="ms-3 me-3">
+      <div class="admin-filter-bar d-flex flex-row justify-content-between align-items-center">
+        <h2>Permissions Globales</h2>
+      </div>
+      <div class="alert alert-warning p-2">
+        <div class="inline-form form-check form-switch">
+          {{ form_widget(editPartnerForm.globalPermission1) }}
+          {{ form_label(editPartnerForm.globalPermission1, 'Gérer le planning d\'équipe') }}
+        </div>
+        <div class="inline-form form-check form-switch">
+          {{ form_widget(editPartnerForm.globalPermission2) }}
+          {{ form_label(editPartnerForm.globalPermission2, 'Gérer son mailing') }}
+        </div>
+        <div class="inline-form form-check form-switch">
+          {{ form_widget(editPartnerForm.globalPermission3) }}
+          {{ form_label(editPartnerForm.globalPermission3, 'Promotion de la salle') }}
+        </div>
+        <div class="inline-form form-check form-switch">
+          {{ form_widget(editPartnerForm.globalPermission4) }}
+          {{ form_label(editPartnerForm.globalPermission4, 'Vendre des boissons') }}
+        </div>
+        <div class="inline-form form-check form-switch">
+          {{ form_widget(editPartnerForm.globalPermission5) }}
+          {{ form_label(editPartnerForm.globalPermission5, 'Vendre des articles de sport') }}
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <button class="btn btn-success w-50">{{ button_label|default('Enregistrer') }}</button>
+      </div>
+      
+
+      <div class="text-center mt-2">
+        <a class="btn btn-danger w-50" href="{{ path('app_admin_show_partner', {'id': partner.id }) }}">Retour</a>
+      </div>
+    </section>
+
+    {{ form_end(editPartnerForm) }}
+  </main>
+
+  {{ include('parts/_footer.html.twig') }}
+
+{% endblock %}

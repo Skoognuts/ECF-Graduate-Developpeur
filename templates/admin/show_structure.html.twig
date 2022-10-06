@@ -55,7 +55,10 @@
         </section>
 
         <div class="text-center">
-        <a href="{{ path('app_admin') }}" class="btn btn-success btn-lg">Retour</a>
+            <a href="{{ path('app_admin_edit_structure', {'id': structure.id}) }}" class="btn btn-danger w-50 mb-2">Modifier</a>
+        </div>
+        <div class="text-center">
+            <a href="{{ path('app_admin') }}" class="btn btn-success w-50">Retour</a>
         </div>
     </main>
 

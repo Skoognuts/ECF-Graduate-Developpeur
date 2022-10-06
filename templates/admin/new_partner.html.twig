@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration :: SPORTY{% endblock %}
+
+{% block body %}
+
+  {{ include('parts/_header.html.twig') }}
+
+  <main>
+    <nav aria-label="breadcrumb breadcrumb-shadow">
+      <ol class="breadcrumb ms-2">
+        <li class="breadcrumb-item"><a href="{{ path('app_admin') }}">Administration</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Créer un Partenaire</li>
+      </ol>
+    </nav>
+
+    <h2 class="ms-3 me-3 mb-3">Créer un Partenaire</h2>
+
+    <section class="ms-3 me-3">
+      {{ form_start(newPartnerForm) }}
+        <div class="inline-form">
+          {{ form_label(newPartnerForm.email, 'E-mail : ') }}
+          {{ form_widget(newPartnerForm.email) }}
+        </div>
+        <div class="inline-form">
+          {{ form_label(newPartnerForm.plainPassword, 'Mot de passe : ') }}
+          {{ form_widget(newPartnerForm.plainPassword) }}
+        </div>
+        <div class="inline-form">
+          {{ form_label(newPartnerForm.city, 'Ville : ') }}
+          {{ form_widget(newPartnerForm.city) }}
+        </div>
+        <div class="inline-form form-check form-switch">
+          {{ form_widget(newPartnerForm.isActive) }}
+          {{ form_label(newPartnerForm.isActive, 'Partenaire actif') }}
+        </div>
+        <section class="ms-4 me-4 mt-4">
+          <div class="admin-filter-bar d-flex flex-row justify-content-between align-items-center">
+            <h2>Permissions Globales</h2>
+          </div>
+          <div class="alert alert-warning p-2">
+            <div class="inline-form form-check form-switch">
+              {{ form_widget(newPartnerForm.globalPermission1) }}
+              {{ form_label(newPartnerForm.globalPermission1, 'Gérer le planning d\'équipe') }}
+            </div>
+            <div class="inline-form form-check form-switch">
+              {{ form_widget(newPartnerForm.globalPermission2) }}
+              {{ form_label(newPartnerForm.globalPermission2, 'Gérer son mailing') }}
+            </div>
+            <div class="inline-form form-check form-switch">
+              {{ form_widget(newPartnerForm.globalPermission3) }}
+              {{ form_label(newPartnerForm.globalPermission3, 'Promotion de la salle') }}
+            </div>
+            <div class="inline-form form-check form-switch">
+              {{ form_widget(newPartnerForm.globalPermission4) }}
+              {{ form_label(newPartnerForm.globalPermission4, 'Vendre des boissons') }}
+            </div>
+            <div class="inline-form form-check form-switch">
+              {{ form_widget(newPartnerForm.globalPermission5) }}
+              {{ form_label(newPartnerForm.globalPermission5, 'Vendre des articles de sport') }}
+            </div>
+          </div>
+        </section>
+        <div class="text-center mt-4">
+          <button class="btn btn-success w-50">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+      {{ form_end(newPartnerForm) }}
+
+      <div class="text-center mt-2">
+        <a class="btn btn-danger w-50" href="{{ path('app_admin') }}">Retour</a>
+      </div>
+    </section>
+  </main>
+
+  {{ include('parts/_footer.html.twig') }}
+
+{% endblock %}

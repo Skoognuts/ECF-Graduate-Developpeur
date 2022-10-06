@@ -16,49 +16,58 @@
         <section class="partner-list ms-2 me-2 mb-5">
             <div class="admin-filter-bar d-flex flex-row justify-content-between align-items-center">
                 <h2 class="mb-0">Liste des Partenaires :</h2>
-                <div class="d-flex flex-row justify-content-end me-2">
+                <div class="d-flex flex-row justify-content-end align-items-center me-2">
                     <a class="{% if activPartnerLinks[0] == true %}white-link-activ{% else %}white-link{% endif %}" href="{{ path('app_admin') }}">Tous</a>
-                    <p class="m-0">&ensp;|&ensp;</p>
+                    <p class="m-0 small">&ensp;|&ensp;</p>
                     <a class="{% if activPartnerLinks[1] == true %}white-link-activ{% else %}white-link{% endif %}" href="{{ path('app_admin_activ_partners') }}">Actifs</a>
-                    <p class="m-0">&ensp;|&ensp;</p>
+                    <p class="m-0 small">&ensp;|&ensp;</p>
                     <a class="{% if activPartnerLinks[2] == true %}white-link-activ{% else %}white-link{% endif %}" href="{{ path('app_admin_innactiv_partners') }}">Innactifs</a>
                 </div>
             </div>
             <div class="alert alert-warning p-1">
                 <div class="d-flex flex-row justify-content-between align-items-center">
                     <label for="searchForPartner">Chercher un partenaire</label>
-                    <input type="text" onkeyup="showPartnerResult(this.value)">
+                    <input id="searchForPartner" name="searchForPartner" type="text">
                 </div>
                 <div id="partnerSearch"></div>
             </div>
             
             {{ include('parts/_partner_table.html.twig') }}
 
+            <div class="d-flex flex-row justify-content-end">
+                <a href="{{ path('app_admin_new_partner') }}" class="btn btn-sm btn-danger">Créer un Partenaire</a>
+            </div>
+
         </section>
 
         <section class="structure-list ms-2 me-2 mb-5">
             <div class="admin-filter-bar d-flex flex-row justify-content-between align-items-center">
                 <h2 class="mb-0">Liste des Structures :</h2>
-                <div class="d-flex flex-row justify-content-end me-2">
+                <div class="d-flex flex-row justify-content-end align-items-center me-2">
                     <a class="{% if activStructureLinks[0] == true %}white-link-activ{% else %}white-link{% endif %}" href="{{ path('app_admin') }}">Tous</a>
-                    <p class="m-0">&ensp;|&ensp;</p>
+                    <p class="m-0 small">&ensp;|&ensp;</p>
                     <a class="{% if activStructureLinks[1] == true %}white-link-activ{% else %}white-link{% endif %}" href="{{ path('app_admin_activ_structures') }}">Actifs</a>
-                    <p class="m-0">&ensp;|&ensp;</p>
+                    <p class="m-0 small">&ensp;|&ensp;</p>
                     <a class="{% if activStructureLinks[2] == true %}white-link-activ{% else %}white-link{% endif %}" href="{{ path('app_admin_innactiv_structures') }}">Innactifs</a>
                 </div>
             </div>
             <div class="alert alert-warning p-1">
                 <div class="d-flex flex-row justify-content-between align-items-center">
                     <label for="searchForStructure">Chercher une structure</label>
-                    <input type="text" onkeyup="showStructureResult(this.value)">
+                    <input id="searchForStructure" name="searchForStructure" type="text">
                 </div>
                 <div id="structureSearch"></div>
             </div>
             
             {{ include('parts/_structure_table.html.twig') }}
 
+            <div class="d-flex flex-row justify-content-end">
+                <a href="{{ path('app_admin_new_structure') }}" class="btn btn-sm btn-danger">Créer une Structure</a>
+            </div>
+
         </section>
 
+        <script src="{{ asset('scripts/jquery-3.6.1.min.js') }}"></script>
         <script src="{{ asset('scripts/search.js') }}"></script>
     </main>
 

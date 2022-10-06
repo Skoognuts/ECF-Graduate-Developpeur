@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration :: SPORTY{% endblock %}
+
+{% block body %}
+
+  {{ include('parts/_header.html.twig') }}
+
+  <main>
+    <nav aria-label="breadcrumb breadcrumb-shadow">
+      <ol class="breadcrumb ms-2">
+        <li class="breadcrumb-item"><a href="{{ path('app_admin') }}">Administration</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Créer une Structure</li>
+      </ol>
+    </nav>
+
+    <h2 class="ms-3 me-3 mb-3">Créer une Structure</h2>
+
+    <section class="ms-3 me-3">
+      {{ form_start(newStructureForm) }}
+        <div class="inline-form">
+          {{ form_label(newStructureForm.email, 'E-mail : ') }}
+          {{ form_widget(newStructureForm.email) }}
+        </div>
+        <div class="inline-form">
+          {{ form_label(newStructureForm.plainPassword, 'Mot de passe : ') }}
+          {{ form_widget(newStructureForm.plainPassword) }}
+        </div>
+        <div class="inline-form">
+          {{ form_label(newStructureForm.partnerId, 'Partenaire : ') }}
+          {{ form_widget(newStructureForm.partnerId) }}
+        </div>
+        <div class="inline-form">
+          {{ form_label(newStructureForm.address, 'Adresse : ') }}
+          {{ form_widget(newStructureForm.address) }}
+        </div>
+        <div class="inline-form">
+          {{ form_label(newStructureForm.phone, 'Téléphone : ') }}
+          {{ form_widget(newStructureForm.phone) }}
+        </div>
+        <div class="inline-form form-check form-switch">
+          {{ form_widget(newStructureForm.isActive) }}
+          {{ form_label(newStructureForm.isActive, 'Partenaire actif') }}
+        </div>
+        <section class="ms-4 me-4 mt-4">
+          <div class="admin-filter-bar d-flex flex-row justify-content-between align-items-center">
+            <h2>Permissions Locales</h2>
+          </div>
+          <div class="alert alert-warning p-2">
+            Les permissions de cette structure seront calquées sur les permissions globales du partenaire auquel elle est rattachée. Vous pourrez les modifier ulterieurement.
+          </div>
+        </section>
+        <div class="text-center mt-4">
+          <button class="btn btn-success w-50">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+      {{ form_end(newStructureForm) }}
+
+      <div class="text-center mt-2">
+        <a class="btn btn-danger w-50" href="{{ path('app_admin') }}">Retour</a>
+      </div>
+    </section>
+  </main>
+
+  {{ include('parts/_footer.html.twig') }}
+
+{% endblock %}

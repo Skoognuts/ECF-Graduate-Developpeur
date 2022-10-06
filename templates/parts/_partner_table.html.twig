@@ -8,8 +8,8 @@
     <tbody>
         {% for partner in partners %}
             <tr>
-                <td><b>{{ partner.city }}</b></td>
-                <td class="text-end"><a href="{{ path('app_admin_show_partner', {'id': partner.id}) }}" class="btn btn-sm btn-success">Voir</a></td>
+                <td class="partnerCity"><b>{{ partner.city }}</b></td>
+                <td class="text-end"><a href="{{ path('app_admin_show_partner', {'id': partner.id}) }}" class="btn btn-sm btn-success partnerUrl">Voir</a></td>
             </tr>
         {% endfor %}
     </tbody>

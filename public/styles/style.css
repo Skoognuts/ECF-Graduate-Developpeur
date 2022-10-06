@@ -36,7 +36,7 @@ a:active {
 
 .admin-filter-bar {
   background: #89c541;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
 }
 
 .white-link-activ {
@@ -51,6 +51,10 @@ a:active {
   font-weight: normal;
   color: #ffffff !important;
   text-decoration: none;
+}
+
+.alert-warning {
+  border-radius: 0 0 5px 5px !important;
 }
 
 .brand-wrapper {
@@ -126,6 +130,13 @@ td {
   font-size: 0.9rem;
 }
 
+.inline-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
 .btn-success {
   padding-inline: 15px;
   padding-top: 2px;
@@ -142,6 +153,24 @@ td {
 .btn-success:active {
   background: #75a233 !important;
   border: 1px solid #89c541 !important;
+}
+
+.btn-danger {
+  padding-inline: 15px;
+  padding-top: 2px;
+  padding-bottom: 0;
+  background: #ca3c1e !important;
+  border: 1px solid #ca3c1e;
+}
+
+.btn-danger:hover {
+  background: #dc7763 !important;
+  border: 1px solid #ca3c1e !important;
+}
+
+.btn-danger:active {
+  background: #9e3122 !important;
+  border: 1px solid #ca3c1e !important;
 }
 
 .form-check-input {

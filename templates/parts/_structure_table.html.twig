@@ -9,9 +9,9 @@
     <tbody>
         {% for structure in structures %}
             <tr>
-                <td><b>{{ structure.partnerId.city }}</b></td>
-                <td>{{ structure.address }}</td>
-                <td class="text-end"><a href="{{ path('app_admin_show_structure', {'id': structure.id}) }}" class="btn btn-sm btn-success">Voir</a></td>
+                <td class="structureCity"><b>{{ structure.partnerId.city }}</b></td>
+                <td class="structureAddress">{{ structure.address }}</td>
+                <td class="text-end"><a href="{{ path('app_admin_show_structure', {'id': structure.id}) }}" class="btn btn-sm btn-success structureUrl">Voir</a></td>
             </tr>
         {% endfor %}
     </tbody>

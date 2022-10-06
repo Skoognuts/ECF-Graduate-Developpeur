@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration :: SPORTY{% endblock %}
+
+{% block body %}
+
+  {{ include('parts/_header.html.twig') }}
+
+  <main>
+    <nav aria-label="breadcrumb breadcrumb-shadow">
+      <ol class="breadcrumb ms-2">
+        <li class="breadcrumb-item"><a href="{{ path('app_admin') }}">Administration</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Structure crééé</li>
+      </ol>
+    </nav>
+
+    <h2 class="ms-3 me-3 mb-3">Structure créée avec succès</h2>
+
+    <section class="ms-3 me-3">
+      <div class="alert alert-success mb-2 p-2">
+        La structure associée au partenaire de {{ structure.partnerId.city }} basée à l'adresse {{ structure.address }} a bien été créée. Vous la retrouverez désormais dans votre espace administrateur.
+      </div>
+      <div class="text-center mt-4">
+        <a class="btn btn-danger w-50" href="{{ path('app_admin') }}">Retour</a>
+      </div>
+    </section>
+  </main>
+
+  {{ include('parts/_footer.html.twig') }}
+
+{% endblock %}
